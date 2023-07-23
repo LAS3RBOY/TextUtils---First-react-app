@@ -36,9 +36,9 @@ export default function TextForm(props) {
                 <div className="mb-3">
                     <textarea className="form-control" value={text} onChange={handleONchange} id="myBox" rows="6"></textarea>
                 </div>
-                <button className="btn btn-primary" onClick={handleUPclick}>UpperCase</button>
-                <button className="btn btn-primary mx-4 my-2" onClick={handleLoclick}>LowerCase</button>
-                <button className="btn btn-primary my-4" onClick={CapitalizeFirstLetter}>First Letter Capitalization</button>
+                <button disabled={text.length===0} className="btn btn-primary" onClick={handleUPclick}>UpperCase</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-4 my-2" onClick={handleLoclick}>LowerCase</button>
+                <button disabled={text.length===0} className="btn btn-primary my-4" onClick={CapitalizeFirstLetter}>First Letter Capitalization</button>
             </div>
             <div className="container my-4">
                 <h1>
@@ -47,7 +47,9 @@ export default function TextForm(props) {
                 <p>{text.split(" ").filter((element)=>{
                     return element.length !== 0
                 }).length} words and {text.length} characters</p>
-                <p>{0.008 * text.split(" ").length} Minutes Read Time</p>
+                <p>{0.008 * text.split(" ").filter((element)=>{
+                    return element.length !== 0
+                }).length} Minutes Read Time</p>
             </div>
         </>
     )
